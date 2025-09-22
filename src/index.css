@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+.btn {
+  @apply flex items-center justify-center p-2 rounded-lg transition active:scale-95;
+}
+
+body {
+    @apply bg-gradient-to-br from-blue-50 to-indigo-200;
+
+}
