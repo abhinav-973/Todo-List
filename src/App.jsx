@@ -151,7 +151,7 @@ function App() {
                 }
               }}
             />
-             {/* Deadline Picker */}
+            {/* Deadline Picker */}
             {/* <DeadLinePicker onDeadlineSet={setDeadline} /> */}
             <button
               className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg 
@@ -162,7 +162,7 @@ function App() {
             </button>
           </div>
         </div>
-      
+
         <div className="showFinished my-3 flex items-center gap-3">
           <input
             type="checkbox"
@@ -263,9 +263,9 @@ function App() {
 
           {deleteAll && todos.length != 0 && (
             <div className="fixed inset-0 flex items-center justify-center">
-              <div className="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+              <div className="absolute inset-0 bg-black/50 backdrop-blur-sm z-50"></div>
 
-              <div className="relative bg-white p-6 rounded-lg shadow-lg w-80 text-center">
+              <div className="relative bg-white p-6 rounded-lg shadow-lg w-80 text-center z-50">
                 <h2 className="text-lg font-semibold mb-4">
                   Confirm Delete All
                 </h2>
@@ -289,19 +289,23 @@ function App() {
               </div>
             </div>
           )}
+          {!deleteAll && !deleteTaskId && (
+            <>
+              <p className="inline-block bg-blue-600 text-white text-sm font-medium px-3 py-2 rounded-xl absolute bottom-[15px] left-10">
+                {todos.filter((t) => !t.isCompleted).length} tasks left
+              </p>
 
-          <p className="text-sm text-gray-600 mt-3 ml-2 position absolute top-55 right-10">
-            {todos.filter((t) => !t.isCompleted).length} tasks left
-          </p>
-          {todos.length !== 0 && (
-            <div className="deleteAll absolute bottom-4 right-10">
-              <button
-                className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition ml-2"
-                onClick={() => setDeleteAll(true)}
-              >
-                Delete All
-              </button>
-            </div>
+              {todos.length !== 0 && (
+                <div className="deleteAll absolute bottom-4 right-10">
+                  <button
+                    className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition ml-2"
+                    onClick={() => setDeleteAll(true)}
+                  >
+                    Delete All
+                  </button>
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>
